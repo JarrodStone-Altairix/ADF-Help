@@ -1,4 +1,4 @@
-from server import app
+from core import app
 from services.root import init_services
 from flask import render_template, send_file
 
@@ -41,4 +41,4 @@ def favicon():
 
 if __name__ == '__main__':
   init_services()
-  app.run(debug=True)
+  app.run(host="localhost", port=5000, debug=True)
