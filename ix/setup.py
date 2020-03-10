@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='ix',
-    version='0.1',
+    version='0.0.0',
     url='https://github.com/JarrodStone-Altairix/ix-util',
     license='MIT',
     author='Jarrod Stone',

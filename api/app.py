@@ -1,12 +1,12 @@
 from server import app
-from services.init import create_services
+from services.root import init_services
 from flask import render_template, send_file
 
 
 @app.route('/index')
 @app.route('/')
 def home():
-    return render_template('index.html')
+  return render_template('index.html')
 
 
 @app.route("/gen")
@@ -39,6 +39,6 @@ def favicon():
   return send_file('static/favicon.ico')
 
 
-create_services()
 if __name__ == '__main__':
-    app.run(debug=True)
+  init_services()
+  app.run(debug=True)

@@ -9,7 +9,7 @@ from services.templater import (
 from services.builder import Generate
 
 
-def create_services():
+def init_services():
   # Generator
   api.add_resource(AdfPackage, "/gen/adf-package")
   api.add_resource(BxPackage, "/gen/bx-package")
