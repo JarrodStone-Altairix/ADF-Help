@@ -1,26 +1,30 @@
-import React from 'react';
-// import { createStackNavigator } from '@react-navigation/stack'
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import HeaderMenu from './home/HeaderMenu'
+import Home from './home/Home';
 import './App.css';
-import Menu from './Menu'
 import SubstituteScreen from './substitute/SubstituteScreen';
-import FormatterScreen from './formatter/FormatterScreen';
+import FormatterScreen from "./formatter/FormatterScreen";
+import TemplaterScreen from './templater/TemplaterScreen';
 
-// const Stack = createStackNavigator();
-
-function App() {
-  return (
-    <div id="app-root">
-      <div id="app-header">
-        <Menu />
-        <div>Altairix Help Site</div>
-        <img src="logo.png" alt="Altairix" />
-      </div>
-      <div id="app-workspace">
-        <SubstituteScreen />
-        <FormatterScreen />
-      </div>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <Router>
+        <div id="app-root">
+          <HeaderMenu />
+          <div id="app-workspace">
+            <Switch>
+              <Route exact path="/" component={Home} />
+              <Route path="/substitute" component={SubstituteScreen} />
+              <Route path="/formatter" component={FormatterScreen} />
+              <Route path="/templater" component={TemplaterScreen} />
+            </Switch>
+          </div>
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;

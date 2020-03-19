@@ -1,91 +1,54 @@
 import re
 
-# _line_pttrn = re.compile(os.linesep)
-_line_pttrn = re.compile("\n")
-_to_constPattern = re.compile(r"([a-z])([A-Z])")
-
 pascal_pttrn = re.compile(r"^[A-Z][a-zA-Z0-9_]+$")
 camel_pttrn = re.compile(r"^[a-z][a-zA-Z0-9_]+$")
 const_pttrn = re.compile(r"^[A-Z][A-Z0-9_]+$")
+css_pttrn = re.compile(r"^[a-zA-Z]+-[a-zA-Z-]*$")
+# css_pttrn = re.compile(r"^[a-z](\-[a-z\-])*$")
 
 
-def to_pascal(text):
-  return text[0].upper() + text[1:]
+def to_token_list(text):
+  """
+  String is assumed to not have any spaces
+  """
+  if (pascal_pttrn.match(text) is not None
+          or camel_pttrn.match(text) is not None):
+    text = re.sub(r"([a-z])([A-Z])", r"\1 \2", text).lower()
+  elif const_pttrn.match(text) is not None:
+    text = text.replace("_", " ").lower()
+  elif css_pttrn.match(text) is not None:
+    text = text.replace("-", " ").lower()
+  else:
+    return [text]
+
+  return text.split(" ")
 
 
-def to_camel(text):
-  return text[0].lower() + text[1:]
+def to_pascal(tokens):
+  return "".join([t[0].upper() + t[1:] for t in tokens])
 
 
-def to_const(text):
-  text, _ = _to_constPattern.subn(r"\1_\2", text)
-  return text.upper()
+def to_camel(tokens):
+  return tokens[0] + "".join([t[0].upper() + t[1:] for t in tokens[1:]])
 
 
-def to_css(text):
-  return _to_constPattern.sub(r"\1-\2", text)
+def to_const(tokens):
+  return "_".join([t.upper() for t in tokens])
 
 
-def from_const(text):
-  return "".join([s[0].upper() + s[1:].lower() for s in text.split("_")])
+def to_css(tokens):
+  return "-".join([t.lower() for t in tokens])
 
 
-def to_template(text):
-  return f"~@{{{text}}}"
-
-
-def to_template_dict(key, value):
-  return {
-      to_template(to_pascal(key)): to_pascal(value),
-      to_template(to_camel(key)): to_camel(value),
-      to_template(to_const(key)): to_const(value)
+def replace_case(find_tokens, replace_tokens, text):
+  sub_map = {
+      to_pascal(find_tokens): to_pascal(replace_tokens),
+      to_camel(find_tokens): to_camel(replace_tokens),
+      to_const(find_tokens): to_const(replace_tokens),
+      to_css(find_tokens): to_css(replace_tokens),
   }
 
-
-def to_fmt_dict(key, value):
-  return {
-      to_pascal(key): to_pascal(value),
-      to_camel(key): to_camel(value),
-      to_const(key): to_const(value)
-  }
-
-
-def get_line_number(position, text):
-  return len(_line_pttrn.findall(text, 0, position)) + 1
-
-
-def subkv(subs, text):
-  """Takes a dictionary of substitution map and applies them
-  to the text
-
-  Params:
-    subs: dict{k:v}
-      substitutions to be made
-    text: str
-      texts to be substituted"""
-
-  for k, v in subs.items():
+  for k, v in sub_map.items():
     text = text.replace(k, v)
-  return text
-
-
-def subf(subs, text):
-  """Makes substitutions looking for the ~@{key} and replaces with the
-  associated value. Matches on pascal case, camel case and upper case keys.
-  For example:
-    ~@{keyCamel} -> valueCamel
-    ~@{KeyCamel} -> ValueCamel
-    ~@{KEY_CAMEL} -> VALUE_CAMEL
-
-  Params:
-    text: str
-      Text to be replaced
-    substitutions: dict{k:v}
-      dictionary of keys and values to be replaced. keys should be provided in
-      camel case or pascal case and the brackets will be added as part of the
-      search."""
-  for key, value in subs.items():
-    fmt_subs = to_template_dict(key, value)
-    text = subkv(fmt_subs, text)
 
   return text

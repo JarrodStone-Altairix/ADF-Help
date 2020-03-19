@@ -3,7 +3,7 @@ from services.sub.api import Substitute, Case
 # from services.gen import (
 #     AdfPackage, BxPackage,
 #     CreatePackageData, LoadCommand, Tcd, TcdField)
-# from services.formatter import Format_Table, Format_Pivot
+from services.fmt.api import Table, Pivot
 # from services.templater import (
 #     CreateTemplate_Basic, ApplyTemplate_Basic)
 # from services.builder import Generate
@@ -23,8 +23,8 @@ def init_services():
   api.add_resource(Case, "/sub/case")
 
   # Formatter
-  # api.add_resource(Format_Table, "/fmt/table")
-  # api.add_resource(Format_Pivot, "/fmt/pivot")
+  api.add_resource(Table, "/fmt/table")
+  api.add_resource(Pivot, "/fmt/pivot")
 
   # Templater
   # api.add_resource(CreateTemplate_Basic, "/templater/create-basic")

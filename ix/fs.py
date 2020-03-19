@@ -1,6 +1,6 @@
 import os
 import shutil
-import ix.config as ixcfg
+from config.fs import Config as ixcfg
 import ix.regex as ixre
 
 
@@ -34,11 +34,11 @@ def read_line(fp, line_no):
 
 
 def readInput():
-  return read(os.path.join(ixcfg.srcDir, ixcfg.inputTextFile()))
+  return read(os.path.join(ixcfg.SRC_DIR, ixcfg.INPUT_TEXT_FILE))
 
 
 def inputFile():
-  return open(os.path.join(ixcfg.srcDir, ixcfg.inputTextFile()), "r")
+  return open(os.path.join(ixcfg.SRC_DIR, ixcfg.INPUT_TEXT_FILE), "r")
 
 
 def write(filepath, text):
@@ -48,11 +48,11 @@ def write(filepath, text):
 
 
 def writeOutput(text):
-  write(os.path.join(ixcfg.bldDir(), ixcfg.outputTextFile()), text)
+  write(os.path.join(ixcfg.BLD_DIR(), ixcfg.OUTPUT_TEXT_FILE), text)
 
 
 def outputFile():
-  return open(os.path.join(ixcfg.bldDir(), ixcfg.outputTextFile()), "w+")
+  return open(os.path.join(ixcfg.BLD_DIR(), ixcfg.OUTPUT_TEXT_FILE), "w+")
 
 
 def append(filepath, text):
@@ -72,4 +72,4 @@ def cleanDir(abs_path):
 
 
 def cleanBldDir():
-  cleanDir(ixcfg.bldDir())
+  cleanDir(ixcfg.BLD_DIR())

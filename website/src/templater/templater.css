@@ -1,0 +1,40 @@
+#templater-screen-root {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#templater-screen-root input, #templater-screen-root textarea {
+  border: none;
+  width: 100%;
+  padding-left: 5px;
+  box-sizing: border-box;
+}
+
+#templater-screen-sidebar {
+  width: 100%;
+  max-width: 350px;
+}
+
+.templater-screen-textarea {
+  flex-grow: 1;
+}
+
+.templater-screen-textarea>textarea {
+  height: 100%;
+  resize: none;
+}
+
+.templater-screen-divider {
+  width: 5px;
+  background-color: var(--colour-primary);
+}
+
+.templater-pair-divider {
+  width: 2px;
+  background-color: var(--colour-primary);
+}
+
+.template-pair-root {
+  display: flex;
+}

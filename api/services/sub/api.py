@@ -1,22 +1,24 @@
+from marshmallow import Schema, fields
 from flask import request
 from flask_restful import Resource
+from services import validate_json
 import services.sub.srvc as srvc
 
 
+class _Substitute(Schema):
+  text = fields.Str(required=True)
+  find = fields.Str(required=True)
+  replace = fields.Str(required=True)
+
+
 class Substitute(Resource):
-  def post(self):
-    args = request.get_json()
 
-    text = args["text"].replace(srvc.to_camel(args["find"]),
-                                srvc.to_camel(args["replace"]))
-    text = text.replace(srvc.to_pascal(args["find"]),
-                        srvc.to_pascal(args["replace"]))
-    text = text.replace(srvc.to_css(args["find"]),
-                        srvc.to_css(args["replace"]))
+  @validate_json(_Substitute())
+  def post(self, data):
+    find = srvc.to_token_list(data["find"])
+    replace = srvc.to_token_list(data["replace"])
 
-    return {
-        "text": text.replace(srvc.to_const(args["find"]),
-                             srvc.to_const(args["replace"]))}
+    return {"text": srvc.replace_case(find, replace, data["text"])}
 
 
 class Case(Resource):

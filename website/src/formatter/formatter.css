@@ -1,64 +1,38 @@
-.body-header {
-  margin: 10px;
-  border-bottom: 1px solid grey;
-}
-
-.stretch-rows {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-}
-
-#case-convert-hdr {
-  text-align: center;
-  margin: 5px 0px 0px 0px;
-}
-
-.case-ele {
-  display: inline;
-  margin: 10px;
-}
-
-.case-input {
-  width: 250px;
-}
-
-.column {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
-
-.tall {
-  height: 500px;
-}
-
-.form-ele {
-  margin: 5px;
-}
-
-.collapsible {
-  height: 30px;
-  transition: height 0.15s ease-in, opacity 0.15s ease-in;
-}
-
-.collapsible.collapse {
-  height: 0px;
-  opacity: 0;
-}
-
-#input-text {
-  white-space: nowrap;
-  resize: none;
-  width: 95%;
-}
-
-#form-cntr {
+#formatter-screen-root {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
-#format-type {
-  width: 250px;
+#formatter-screen-controls {
+  display: flex;
+  width: 100%;
+  height: 60px;
+}
+
+.formatter-screen-control-item {
+  flex-grow: 1;
+}
+
+#formatter-screen-control-main {
+  display: flex;
+}
+
+#formatter-screen-control-main>select {
+  flex-grow: 1;
+  border: none;
+}
+
+#formatter-screen-control-main>input {
+  width: 75px;
+  border: none;
+  cursor: pointer;
+}
+
+#formatter-screen-text {
+  flex-grow: 1;
+  resize: none;
+  border: none;
+  padding-left: 10px;
 }

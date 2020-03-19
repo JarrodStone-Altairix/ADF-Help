@@ -1,29 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios'
 import './formatter.css'
 
-class FormatterScreen extends React.Component {
+class FormatterScreen extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      format: 'table',
+      text: '',
+      pivot: "\\.\\w+\\(",
+    }
+
+    this.handleFormatChange = this.handleFormatChange.bind(this)
+    this.handleTextChange = this.handleTextChange.bind(this)
+    this.handlePivotChange = this.handlePivotChange.bind(this)
+    this.handleFormatClick = this.handleFormatClick.bind(this)
+  }
+
+  handleFormatChange(e) { this.setState({ format: e.target.value }); }
+  handleTextChange(e) { this.setState({ text: e.target.value }); }
+  handlePivotChange(e) { this.setState({ pivot: e.target.value }); }
+
+  handleFormatClick(e) {
+
+    if (this.state.format === "table") {
+      axios.post("fmt/table", {
+        text: this.state.text
+      }).then(rsp => this.setState({ text: rsp.data.text }))
+        .catch(rsp => { })
+    }
+    else if (this.state.format === "pivot") {
+      axios.post("fmt/pivot", {
+        text: this.state.text,
+        pivot: this.state.pivot
+      }).then(rsp => this.setState({ text: rsp.data.text }))
+        .catch(rsp => { })
+    }
+  }
 
   render() {
     return (
-      <div class="">
-        <div id="form-cntr" class="form-ele">
-          <select id="format-type" class="form-ele" onchange="toggleCollapse($('#pivot-cntr'), this.value!='pivot')">
-            <option value="table" selected>Table</option>
-            <option value="pivot">Pivot</option>
-          </select>
-          <div id="pivot-cntr" class="form-ele collapsible collapse">Pivot Regex:<input id="pivot-regex" class="form-ele"
-            type="text" value="\.\w+\(" /></div>
-          <input class="form-ele" type="submit" value="Format"
-            // style="z-index: 1;"
-            onclick="format($('#format-type').val());" />
-        </div>
-        <div>
-          <div class="column body-header">Format Text</div>
-          <div class="column tall">
-            <textarea id="input-text" name="text"></textarea>
+      <div id="formatter-screen-root">
+        <div id="formatter-screen-controls">
+          <div id="formatter-screen-control-main" className="formatter-screen-control-item">
+            <select value={this.state.format} onChange={this.handleFormatChange}>
+              <option value="table">Table</option>
+              <option value="pivot">Pivot</option>
+            </select>
+            <input type="button" value="Format" onClick={this.handleFormatClick} />
+          </div>
+          <div id="formatter-screen-pivot-wrap" className="formatter-screen-control-item">
+            <div>Pivot Regex:<input type="text" value={this.state.pivot} onChange={this.handlePivotChange} /></div>
           </div>
         </div>
-      </div>
+        <div style={{ height: "5px", backgroundColor: "var(--colour-primary)" }}></div>
+        <textarea id="formatter-screen-text" />
+      </div >
     );
   }
 }

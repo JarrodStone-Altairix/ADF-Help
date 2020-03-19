@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  margin: 0;
+  display: initial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --colour-primary: #003179;
+  --colour-primary-lighter: #003D97;
+  --colour-primary-lightest: #0150C5;
+  --colour-primary-darker: #00255C;
+  --colour-primary-darkest: #00173A;
+
+  --colour-secondary: #10007F;
+  --colour-secondary-lighter: #1A01CB;
+  --colour-secondary-lightest: #13009E;
+  --colour-secondary-darker: #0C0061;
+  --colour-secondary-darkest: #07003D;
+
+  --colour-tertiary: #007363;
+  --colour-tertiary-lighter: #00C0A5;
+  --colour-tertiary-lightest: #008F7C;
+  --colour-tertiary-darker: #00584C;
+  --colour-tertiary-darkest: #00372F;
+
+  --colour-complement: #B77400;
+  --colour-complement-lighter: #FFA100;
+  --colour-complement-lightest: #E49000;
+  --colour-complement-darker: #8C5800;
+  --colour-complement-darkest: #583700;
+
+
+  --colour-background: #B3B3B3;
+  --colour-background-lighter: #F0F0F0;
+  --colour-background-lightest: #FAFAFA;
+  --colour-background-darker: #505050;
+  --colour-background-darkest: #111111;
+
+  background-color: var(--colour-background-lightest);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#app-root {
   display: flex;
   flex-direction: column;
+  height: 100vh;
+}
+
+#header-menu {
+  height: 50px;
+  display: flex;
+  border-bottom: 1px solid var(--colour-primary);
+  background-color: var(--colour-background);
+}
+
+#header-menu-list {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#header-menu-list>*{
+  height: 100%;
+  padding: 0px 10px;
+  box-sizing: border-box;
+  text-decoration: none;
+  line-height: 50px;
+  color: var(--colour-background-darkest)
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#header-menu-list>*:hover {
+  background-color: var(--colour-background-lighter)
+}
+
+#header-menu-logo {
+  height: 100%;
+}
+
+#app-workspace {
+  flex-grow: 1;
 }
