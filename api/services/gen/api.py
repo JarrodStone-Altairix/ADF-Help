@@ -1,21 +1,47 @@
+import os
 from io import BytesIO
 from zipfile import ZipFile, ZIP_DEFLATED
+from marshmallow import Schema, fields
 from flask import request, send_file
 from flask_restful import Resource
-import os
-import ix.fs as ixfs
-import ix.regex as ixre
-from ix.code.template import tag
+from services import validate_json
+import services.template.srvc as srvc
 
-packageData = ixfs.read("generate/src/CreatePackageData.java")
-loadCommandStr = ixfs.read("generate/src/LoadCommand.java")
-tcd = ixfs.read("generate/src/Tcd.java")
-tcdField = ixfs.read("generate/src/TcdField.java")
+# packageData = ixfs.read("generate/src/CreatePackageData.java")
+# loadCommandStr = ixfs.read("generate/src/LoadCommand.java")
+# tcd = ixfs.read("generate/src/Tcd.java")
+# tcdField = ixfs.read("generate/src/TcdField.java")
+
+# TODO Move into a database
+TEMPLATE_DIR = "services/gen/templates"
 
 
-class AdfPackage(Resource):
-  def get(self):
-    return create_package("generate/src/@AdfTemplate")
+class ListTemplate(Resource):
+
+  def post(self):
+    files = list(filter(
+        lambda fp: os.path.isfile(os.path.join(TEMPLATE_DIR, fp)),
+        os.listdir(TEMPLATE_DIR)))
+    return {"templates": files}
+
+
+class _ReadTemplate(Schema):
+  template = fields.Str(required=True)
+
+
+class ReadTemplate(Resource):
+
+  @validate_json(_ReadTemplate())
+  def post(self, data):
+
+    if data["template"] not in os.listdir(TEMPLATE_DIR):
+      return 400, {"msg": "Invalid template name"}
+
+    with open(os.path.join(TEMPLATE_DIR, data["template"])) as fd:
+      text = fd.read()
+      fd.close()
+
+    return {"text": text, "symbols": srvc.get_symbols(text)}
 
 
 class BxPackage(Resource):

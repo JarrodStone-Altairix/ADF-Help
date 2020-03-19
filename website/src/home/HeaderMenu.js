@@ -11,6 +11,7 @@ class HeaderMenu extends Component {
           <Link to="/substitute">Case Substitution</Link>
           <Link to="/formatter">Formatter</Link>
           <Link to="/templater">Templater</Link>
+          <Link to="/generator">Generator</Link>
         </div>
         <img id="header-menu-logo" src="logo.png" alt="Altairix" />
       </div>

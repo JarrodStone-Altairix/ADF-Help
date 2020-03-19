@@ -1,15 +1,17 @@
 from core import api
 from services.sub.api import Substitute, Case
-# from services.gen import (
+from services.gen.api import ListTemplate, ReadTemplate
+
 #     AdfPackage, BxPackage,
 #     CreatePackageData, LoadCommand, Tcd, TcdField)
 from services.fmt.api import Table, Pivot
-from services.template.api import Create
+import services.template.api as template
 
 
 def init_services():
   # Generator
-  # api.add_resource(AdfPackage, "/gen/adf-package")
+  api.add_resource(ListTemplate, "/gen/template/list")
+  api.add_resource(ReadTemplate, "/gen/template/read")
   # api.add_resource(BxPackage, "/gen/bx-package")
   # api.add_resource(CreatePackageData, "/gen/package-data")
   # api.add_resource(LoadCommand, "/gen/load-command")
@@ -25,7 +27,8 @@ def init_services():
   api.add_resource(Pivot, "/fmt/pivot")
 
   # Templater
-  api.add_resource(Create, "/template/create")
+  api.add_resource(template.Create, "/template/create")
+  api.add_resource(template.Apply, "/template/apply")
 
   # Builder
   # api.add_resource(Generate, "/builder/generate")

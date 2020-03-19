@@ -1,4 +1,3 @@
-from functools import reduce
 from marshmallow import Schema, fields
 from flask_restful import Resource
 from services import validate_json
@@ -26,3 +25,16 @@ class Create(Resource):
         data["pairs"])
 
     return {"text": srvc.build_template(pairs, data["text"])}
+
+
+class _Apply(Schema):
+
+  text = fields.Str(required=True)
+  symbols = fields.Dict(required=True)
+
+
+class Apply(Resource):
+
+  @validate_json(_Apply())
+  def post(self, data):
+    return {"text": srvc.apply_template(data["symbols"], data["text"])}

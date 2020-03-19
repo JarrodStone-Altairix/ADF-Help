@@ -1,7 +1,7 @@
 import re
 import services.sub.srvc as srvc_sub
 
-template_pattern = re.compile(r"${(.+?)}")
+template_pattern = re.compile(r"\${(.+?)}")
 
 
 def build_template(template_pairs, text):
@@ -21,11 +21,30 @@ def build_template(template_pairs, text):
   return text
 
 
-def apply_template(template_args, template):
+def get_symbols(text):
 
-  for pair in template_args:
-    template_tokens = srvc_sub.to_token_list(pair["template"])
-    symbol_tokens = srvc_sub.to_token_list(pair["symbol"])
+  pascalSymbols = [
+      srvc_sub.to_pascal(srvc_sub.to_token_list(m.group(1)))
+      for m in template_pattern.finditer(text)]
+
+  if len(pascalSymbols) == 1:
+    return pascalSymbols
+
+  pascalSymbols.sort()
+  ret = [pascalSymbols[0]]
+
+  for a, b in zip(pascalSymbols, pascalSymbols[1:]):
+    if a != b:
+      ret.append(b)
+
+  return ret
+
+
+def apply_template(symbols, template):
+
+  for t, s in symbols.items():
+    template_tokens = srvc_sub.to_token_list(t)
+    symbol_tokens = srvc_sub.to_token_list(s)
 
     sub_map = {
         f"${{{k}}}": v for k, v
