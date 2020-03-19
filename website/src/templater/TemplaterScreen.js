@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios'
 import './templater.css'
 import TemplatePair from './TemplatePair';
 
@@ -51,13 +52,12 @@ class TemplaterScreen extends Component {
 
   updateOutput() {
 
-    console.log(this.state)
-    // axios.post("sub/text", {
-    //   text: this.state.text,
-    //   find: this.state.find,
-    //   replace: this.state.replace,
-    // }).then(rsp => this.setState({ out: rsp.data.text }))
-    //   .catch(rsp => { })
+    axios.post("template/create", {
+      text: this.state.text,
+      pairs: this.state.pairs,
+    })
+      .then(rsp => this.setState({ out: rsp.data.text }))
+      .catch(rsp => { })
   }
 
   renderPair(id) {

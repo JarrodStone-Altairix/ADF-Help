@@ -42,31 +42,31 @@ def _validation_err_repr(e):
       for k, v in e.messages.items()])
 
 
-class log_exceptions(object):
-  """
-  Decorator class to catch all exceptions and log them
-  """
+# class log_exceptions(object):
+#   """
+#   Decorator class to catch all exceptions and log them
+#   """
 
-  def __init__(self, log_req_args=True, log_rsp_args=True):
-    self.log_req_args = log_req_args
-    self.log_rsp_args = log_rsp_args
+#   def __init__(self, log_req_args=True, log_rsp_args=True):
+#     self.log_req_args = log_req_args
+#     self.log_rsp_args = log_rsp_args
 
-  def __call__(self, fn):
+#   def __call__(self, fn):
 
-    @wraps(fn)
-    def log_exception_wrapper(*args, **kwargs):
-      set_arg_logging(self.log_req_args, self.log_rsp_args)
-      try:
-        return fn(*args, **kwargs)
-      except Exception as e:
-        logger.critical(f"Unknown error({str(e)})", exc_info=True)
-        abort(500)
+#     @wraps(fn)
+#     def log_exception_wrapper(*args, **kwargs):
+#       set_arg_logging(self.log_req_args, self.log_rsp_args)
+#       try:
+#         return fn(*args, **kwargs)
+#       except Exception as e:
+#         logger.critical(f"Unknown error({str(e)})", exc_info=True)
+#         abort(500)
 
-    return log_exception_wrapper
+#     return log_exception_wrapper
 
 
-def simple_response(http_code, msg):
-  return {"msg": msg}, http_code
+# def simple_response(http_code, msg):
+#   return {"msg": msg}, http_code
 
 
 # def fmt_msg(msg):

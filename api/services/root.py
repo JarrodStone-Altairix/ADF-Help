@@ -4,9 +4,7 @@ from services.sub.api import Substitute, Case
 #     AdfPackage, BxPackage,
 #     CreatePackageData, LoadCommand, Tcd, TcdField)
 from services.fmt.api import Table, Pivot
-# from services.templater import (
-#     CreateTemplate_Basic, ApplyTemplate_Basic)
-# from services.builder import Generate
+from services.template.api import Create
 
 
 def init_services():
@@ -27,8 +25,7 @@ def init_services():
   api.add_resource(Pivot, "/fmt/pivot")
 
   # Templater
-  # api.add_resource(CreateTemplate_Basic, "/templater/create-basic")
-  # api.add_resource(ApplyTemplate_Basic, "/templater/apply-basic")
+  api.add_resource(Create, "/template/create")
 
   # Builder
   # api.add_resource(Generate, "/builder/generate")
