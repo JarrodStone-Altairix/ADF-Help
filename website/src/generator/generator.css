@@ -30,9 +30,20 @@
   background-color: var(--colour-primary);
 }
 
-.generator-pair-divider {
-  width: 2px;
-  background-color: var(--colour-primary);
+.generator-controls-root {
+  height: 200px;
+  overflow: auto;
+  border-bottom: 1px solid var(--colour-primary);
+}
+
+.generator-controls-symbols-wrap {
+  display: flex;
+}
+
+.generator-controls-template {
+  line-height: 40px;
+  width: 225px;
+  padding-left: 5px;
 }
 
 .generator-list-root {

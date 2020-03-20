@@ -1,0 +1,16 @@
+from marshmallow import Schema, fields
+from flask_restful import Resource
+from services import validate_json
+
+
+class _${Endpoint}(Schema):
+  arg = fields.Str(required=True)
+
+
+class ${Endpoint}(Resource):
+
+  @validate_json(_${Endpoint}())
+  def post(self, data):
+
+
+    return 200

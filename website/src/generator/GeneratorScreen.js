@@ -11,10 +11,11 @@ class GeneratorScreen extends Component {
 
     this.state = {
       templates: [],
-      symbols: {},
+      symbols: { symbol: "" },
       text: '',
       out: ''
     }
+    this.updateOut = false
 
     this.handleGeneratorListClick = this.handleGeneratorListClick.bind(this)
     this.handleSymbolChange = this.handleSymbolChange.bind(this)
@@ -31,6 +32,7 @@ class GeneratorScreen extends Component {
   }
 
   handleSymbolChange(e, symbol) {
+    this.updateOut = true
     var symbols = { ...this.state.symbols }
     symbols[symbol] = e.target.value
     this.setState({ symbols })
@@ -38,13 +40,14 @@ class GeneratorScreen extends Component {
 
   componentDidUpdate(prevProps, prevState) {
 
-    if (prevState.out !== this.state.out) { return }
+    if (!this.updateOut || this.state.text.length === "") { return }
 
     axios.post("template/apply", {
       text: this.state.text,
       symbols: this.state.symbols,
     })
       .then(rsp => { this.setState({ out: rsp.data.text }) })
+      .catch(rsp => { })
   }
 
   componentDidMount() {

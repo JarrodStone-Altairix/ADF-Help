@@ -9,8 +9,9 @@ class GeneratorControls extends Component {
           this.props.symbols.map((x, i) => {
             return (
               <div key={i} className="generator-controls-symbols-wrap">
-                <div className="generator-controls-symbol">{x}</div>
+                <div className="generator-controls-template">{x}</div>
                 <input type="text" placeholder="Substitution Value"
+                  className="generator-controls-symbol"
                   onChange={e => this.props.onSymbolChange(e, x)} />
               </div>
             )

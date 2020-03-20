@@ -18,6 +18,8 @@ class TemplaterScreen extends Component {
       out: ''
     }
 
+    this.updateOut = false;
+
     this.handleTextChange = this.handleTextChange.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
     this.handleTemplateChange = this.handleTemplateChange.bind(this)
@@ -25,13 +27,15 @@ class TemplaterScreen extends Component {
   }
 
   handleOutChange(e) { this.setState({ out: e.target.value }); }
-  handleTextChange(e) { this.setState({ text: e.target.value }); }
+  handleTextChange(e) { this.setState({ text: e.target.value }); this.updateOut = true }
   handleSearchChange(e, id) {
+    this.updateOut = true;
     const newPairs = this.state.pairs.slice()
     newPairs[id][0] = e.target.value
     this.setState({ pairs: newPairs })
   }
   handleTemplateChange(e, id) {
+    this.updateOut = true;
     const newPairs = this.state.pairs.slice()
     newPairs[id][1] = e.target.value
     this.setState({ pairs: newPairs })
@@ -39,9 +43,10 @@ class TemplaterScreen extends Component {
 
   componentDidUpdate(prevProps, prevState) {
 
-    if (prevState.out !== this.state.out || this.state.text.length === 0) {
+    if (!this.updateOut || this.state.text.length === 0) {
       return;
     }
+    this.updateOut = false
 
     var symbols = {}
     for (var i = 0; i < this.state.pairs.length; i++) {

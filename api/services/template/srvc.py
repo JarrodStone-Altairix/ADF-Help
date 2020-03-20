@@ -27,7 +27,7 @@ def get_symbols(text):
       srvc_sub.to_pascal(srvc_sub.to_token_list(m.group(1)))
       for m in template_pattern.finditer(text)]
 
-  if len(pascalSymbols) == 1:
+  if len(pascalSymbols) <= 1:
     return pascalSymbols
 
   pascalSymbols.sort()
