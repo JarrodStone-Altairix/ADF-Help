@@ -4,11 +4,11 @@ import services.sub.srvc as srvc_sub
 template_pattern = re.compile(r"\${(.+?)}")
 
 
-def build_template(template_pairs, text):
+def build_template(symbol_map, text):
 
-  for pair in template_pairs:
-    search_tokens = srvc_sub.to_token_list(pair["search"])
-    template_tokens = srvc_sub.to_token_list(pair["template"])
+  for s, t in symbol_map.items():
+    search_tokens = srvc_sub.to_token_list(s)
+    template_tokens = srvc_sub.to_token_list(t)
 
     sub_map = {
         k: f"${{{v}}}" for k, v

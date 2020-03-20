@@ -11,14 +11,12 @@ class TemplaterScreen extends Component {
     this.state = {
       text: '',
       pairs: [
-        { search: "", template: "" },
-        { search: "", template: "" },
-        { search: "", template: "" },
+        Array(2).fill(""),
+        Array(2).fill(""),
+        Array(2).fill(""),
       ],
       out: ''
     }
-
-    this.updateOut = false
 
     this.handleTextChange = this.handleTextChange.bind(this)
     this.handleSearchChange = this.handleSearchChange.bind(this)
@@ -27,34 +25,37 @@ class TemplaterScreen extends Component {
   }
 
   handleOutChange(e) { this.setState({ out: e.target.value }); }
-  handleTextChange(e) { this.setState({ text: e.target.value }); this.updateOut = true }
+  handleTextChange(e) { this.setState({ text: e.target.value }); }
   handleSearchChange(e, id) {
     const newPairs = this.state.pairs.slice()
-    newPairs[id].search = e.target.value
+    newPairs[id][0] = e.target.value
     this.setState({ pairs: newPairs })
-    this.updateOut = true
   }
   handleTemplateChange(e, id) {
     const newPairs = this.state.pairs.slice()
-    newPairs[id].template = e.target.value
+    newPairs[id][1] = e.target.value
     this.setState({ pairs: newPairs })
-    this.updateOut = true
   }
 
   componentDidUpdate(prevProps, prevState) {
 
-    if (!this.updateOut || this.state.text.length === 0) { return; }
-    if (this.updateOut) {
-      this.updateOut = false
-      this.updateOutput()
+    if (prevState.out !== this.state.out || this.state.text.length === 0) {
+      return;
     }
-  }
 
-  updateOutput() {
+    var symbols = {}
+    for (var i = 0; i < this.state.pairs.length; i++) {
+      if (this.state.pairs[i][0] !== "" && this.state.pairs[i][1] !== "") {
+        symbols[this.state.pairs[i][0]] = this.state.pairs[i][1]
+      }
+    }
+    if (Object.keys(symbols).length === 0) {
+      return
+    }
 
     axios.post("template/create", {
       text: this.state.text,
-      pairs: this.state.pairs,
+      symbols: symbols,
     })
       .then(rsp => this.setState({ out: rsp.data.text }))
       .catch(rsp => { })

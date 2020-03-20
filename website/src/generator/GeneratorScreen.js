@@ -38,9 +38,7 @@ class GeneratorScreen extends Component {
 
   componentDidUpdate(prevProps, prevState) {
 
-    if (prevState.out !== this.state.out) {
-      return
-    }
+    if (prevState.out !== this.state.out) { return }
 
     axios.post("template/apply", {
       text: this.state.text,
