@@ -11,8 +11,9 @@ def to_token_list(text):
   """
   String is assumed to not have any spaces
   """
-  if (pascal_pttrn.match(text) is not None
-          or camel_pttrn.match(text) is not None):
+  if pascal_pttrn.match(text) is not None:
+    text = re.sub(r"(.)([A-Z])", r"\1 \2", text).lower()
+  elif camel_pttrn.match(text) is not None:
     text = re.sub(r"([a-z])([A-Z])", r"\1 \2", text).lower()
   elif const_pttrn.match(text) is not None:
     text = text.replace("_", " ").lower()

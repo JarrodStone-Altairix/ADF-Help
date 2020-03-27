@@ -1,7 +1,7 @@
 import re
 import services.sub.srvc as srvc_sub
 
-template_pattern = re.compile(r"\${(.+?)}")
+template_pattern = re.compile(r"\@{(.+?)}")
 
 
 def build_template(symbol_map, text):
@@ -11,7 +11,7 @@ def build_template(symbol_map, text):
     template_tokens = srvc_sub.to_token_list(t)
 
     sub_map = {
-        k: f"${{{v}}}" for k, v
+        k: f"@{{{v}}}" for k, v
         in srvc_sub.get_subtitution_map(search_tokens, template_tokens).items()
     }
 
@@ -47,7 +47,7 @@ def apply_template(symbols, template):
     symbol_tokens = srvc_sub.to_token_list(s)
 
     sub_map = {
-        f"${{{k}}}": v for k, v
+        f"@{{{k}}}": v for k, v
         in srvc_sub.get_subtitution_map(template_tokens, symbol_tokens).items()
     }
 

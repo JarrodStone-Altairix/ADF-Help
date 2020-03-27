@@ -5,7 +5,6 @@
 }
 
 #templater-screen-root input, #templater-screen-root textarea {
-  border: none;
   width: 100%;
   padding-left: 5px;
   box-sizing: border-box;

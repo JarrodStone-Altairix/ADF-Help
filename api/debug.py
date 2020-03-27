@@ -1,9 +1,67 @@
 import os
+import shutil
 
-TEMPLATE_DIR = "services/gen/templates"
+root_fp = r"C:\Users\Jarrod\Downloads\audio"
 
-files = list(filter(
-    lambda fp: os.path.isfile(os.path.join(TEMPLATE_DIR, fp)),
-    os.listdir(TEMPLATE_DIR)))
+rename_map = {
+    "word-rec_f1_q01.mp3": "word-rec_f1_q01-bat.mp3",
+    "word-rec_f1_q02.mp3": "word-rec_f1_q02-on.mp3",
+    "word-rec_f1_q03.mp3": "word-rec_f1_q03-cook.mp3",
+    "word-rec_f1_q04.mp3": "word-rec_f1_q04-free.mp3",
+    "word-rec_f1_q05.mp3": "word-rec_f1_q05-now.mp3",
+    "word-rec_f1_q06.mp3": "word-rec_f1_q06-between.mp3",
+    "word-rec_f1_q07.mp3": "word-rec_f1_q07-fair.mp3",
+    "word-rec_f1_q08.mp3": "word-rec_f1_q08-smell.mp3",
+    "word-rec_f1_q09.mp3": "word-rec_f1_q09-ever.mp3",
+    "word-rec_f1_q10.mp3": "word-rec_f1_q10-wise.mp3",
+    "word-rec_f1_q11.mp3": "word-rec_f1_q11-singer.mp3",
+    "word-rec_f1_q12.mp3": "word-rec_f1_q12-belt.mp3",
+    "word-rec_f1_q13.mp3": "word-rec_f1_q13-tough.mp3",
+    "word-rec_f1_q14.mp3": "word-rec_f1_q14-thought.mp3",
+    "word-rec_f1_q15.mp3": "word-rec_f1_q15-scratch.mp3",
+    "word-rec_f1_q16.mp3": "word-rec_f1_q16-spilt.mp3",
+    "word-rec_f1_q17.mp3": "word-rec_f1_q17-fame.mp3",
+    "word-rec_f1_q18.mp3": "word-rec_f1_q18-burst.mp3",
+    "word-rec_f1_q19.mp3": "word-rec_f1_q19-questionable.mp3",
+    "word-rec_f1_q20.mp3": "word-rec_f1_q20-amuse.mp3",
+    "word-rec_f1_q21.mp3": "word-rec_f1_q21-deceive.mp3",
+    "word-rec_f1_q22.mp3": "word-rec_f1_q22-violent.mp3",
+    "word-rec_f1_q23.mp3": "word-rec_f1_q23-about.mp3",
+    "word-rec_f1_q24.mp3": "word-rec_f1_q24-relapse.mp3",
+    "word-rec_f1_q25.mp3": "word-rec_f1_q25-distract.mp3",
+    "word-rec_f1_q26.mp3": "word-rec_f1_q26-commemorate.mp3",
+    "word-rec_f1_q27.mp3": "word-rec_f1_q27-mysterious.mp3",
+    "word-rec_f1_q28.mp3": "word-rec_f1_q28-interior.mp3",
+    "word-rec_f1_q29.mp3": "word-rec_f1_q29-historian.mp3",
+    "word-rec_f1_q30.mp3": "word-rec_f1_q30-telegraph.mp3",
+    "word-rec_f1_q31.mp3": "word-rec_f1_q31-author.mp3",
+    "word-rec_f1_q32.mp3": "word-rec_f1_q32-fragility.mp3",
+    "word-rec_f1_q33.mp3": "word-rec_f1_q33-sufficiency.mp3",
+    "word-rec_f1_q34.mp3": "word-rec_f1_q34-prerequisite.mp3",
+    "word-rec_f1_q35.mp3": "word-rec_f1_q35-thermography.mp3",
+    "word-rec_f1_q36.mp3": "word-rec_f1_q36-principal.mp3",
+    "word-rec_f1_q37.mp3": "word-rec_f1_q37-monotonous.mp3",
+    "word-rec_f1_q38.mp3": "word-rec_f1_q38-reactionary.mp3",
+    "word-rec_f1_q39.mp3": "word-rec_f1_q39-substantiate.mp3",
+    "word-rec_f1_q40.mp3": "word-rec_f1_q40-resign.mp3",
+    "word-rec_f1_q41.mp3": "word-rec_f1_q41-itinerant.mp3",
+    "word-rec_f1_q42.mp3": "word-rec_f1_q42-obituary.mp3",
+    "word-rec_f1_q43.mp3": "word-rec_f1_q43-impute.mp3",
+    "word-rec_f1_q44.mp3": "word-rec_f1_q44-moratorium.mp3",
+    "word-rec_f1_q45.mp3": "word-rec_f1_q45-synonymous.mp3",
+    "word-rec_f1_q46.mp3": "word-rec_f1_q46-negligible.mp3",
+    "word-rec_f1_q47.mp3": "word-rec_f1_q47-ludicrous.mp3",
+    "word-rec_f1_q48.mp3": "word-rec_f1_q48-repugnant.mp3",
+    "word-rec_f1_q49.mp3": "word-rec_f1_q49-heterogeneous.mp3",
+    "word-rec_f1_q50.mp3": "word-rec_f1_q50-contentiousness.mp3",
+    "word-rec_f1_q51.mp3": "word-rec_f1_q51-omnipotent.mp3",
+    "word-rec_f1_q52.mp3": "word-rec_f1_q52-hierarchy.mp3",
+    "word-rec_f1_q53.mp3": "word-rec_f1_q53-exigencies.mp3",
+    "word-rec_f1_q54.mp3": "word-rec_f1_q54-abstruse.mp3",
+    "word-rec_f1_q55.mp3": "word-rec_f1_q55-apotheosis.mp3",
+}
 
-print(files)
+for fp in os.listdir(root_fp):
+  shutil.copy(
+      os.path.join(root_fp, fp),
+      os.path.join("out", rename_map[fp]))

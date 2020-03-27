@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import './formatter.css'
+import FormatterSubpanel from './FormatterSubpanel';
 
 class FormatterScreen extends Component {
 
@@ -15,13 +16,13 @@ class FormatterScreen extends Component {
 
     this.handleFormatChange = this.handleFormatChange.bind(this)
     this.handleTextChange = this.handleTextChange.bind(this)
-    this.handlePivotChange = this.handlePivotChange.bind(this)
     this.handleFormatClick = this.handleFormatClick.bind(this)
+    this.handlePivotChange = this.handlePivotChange.bind(this)
   }
 
   handleFormatChange(e) { this.setState({ format: e.target.value }); }
-  handleTextChange(e) { this.setState({ text: e.target.value }); }
   handlePivotChange(e) { this.setState({ pivot: e.target.value }); }
+  handleTextChange(e) { this.setState({ text: e.target.value }); }
 
   handleFormatClick(e) {
 
@@ -52,11 +53,13 @@ class FormatterScreen extends Component {
             <input type="button" value="Format" onClick={this.handleFormatClick} />
           </div>
           <div id="formatter-screen-pivot-wrap" className="formatter-screen-control-item">
-            <div>Pivot Regex:<input type="text" value={this.state.pivot} onChange={this.handlePivotChange} /></div>
+            <FormatterSubpanel type={this.state.format}
+              pivot={this.state.pivot} onPivotChange={this.handlePivotChange} />
+            {/* <div>Pivot Regex:<input type="text" value={this.state.pivot} onChange={this.handlePivotChange} /></div> */}
           </div>
         </div>
         <div style={{ height: "5px", backgroundColor: "var(--colour-primary)" }}></div>
-        <textarea id="formatter-screen-text" />
+        <textarea id="formatter-screen-text" value={this.state.text} onChange={this.handleTextChange} />
       </div >
     );
   }

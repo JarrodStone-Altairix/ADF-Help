@@ -30,6 +30,8 @@ def format_table(text, delim=','):
     # get the length of the longest line of the previous column
     max_len = 0
     for prev_ele, ele in zip(table_t[j], col):
+      if prev_ele is None:
+        continue
       ele_len = len(prev_ele)
       if ele is not None and ele_len > max_len:
         max_len = ele_len

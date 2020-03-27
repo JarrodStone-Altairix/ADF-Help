@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class ${ComponentName} extends Component {
+class @{ComponentName} extends Component {
 
   constructor(props) {
     super(props)
@@ -9,10 +9,11 @@ class ${ComponentName} extends Component {
 
   render() {
     return (
-      <div id="${component-name}-root">
+      <div id="@{component-name}-root">
+
       </div>
     );
   }
 }
 
-export default ${ComponentName};
+export default @{ComponentName};

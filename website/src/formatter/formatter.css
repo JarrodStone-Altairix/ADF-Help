@@ -6,33 +6,37 @@
 }
 
 #formatter-screen-controls {
-  display: flex;
   width: 100%;
   height: 60px;
 }
 
 .formatter-screen-control-item {
-  flex-grow: 1;
+  display: inline-flex;
+  width: 50%;
+  height: 100%;
 }
 
 #formatter-screen-control-main {
-  display: flex;
+  float: left;
 }
 
 #formatter-screen-control-main>select {
   flex-grow: 1;
-  border: none;
 }
 
 #formatter-screen-control-main>input {
   width: 75px;
-  border: none;
   cursor: pointer;
 }
 
 #formatter-screen-text {
   flex-grow: 1;
   resize: none;
-  border: none;
   padding-left: 10px;
+}
+
+#formatter-subpanel-pivot {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
