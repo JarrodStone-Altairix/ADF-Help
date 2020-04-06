@@ -1,16 +1,16 @@
 @SuppressWarnings("serial")
-public class ~@{Template}ArrayList extends ObjectArrayList<~@{Object}> {
+public class @{Template}ArrayList extends ObjectArrayList<@{Object}> {
 
-  private static final String CLASSNM = ~@{Template}ArrayList.class.getName();
-  private static final String CLASSNM_SIMPLE = ~@{Template}ArrayList.class.getSimpleName();
+  private static final String CLASSNM = @{Template}ArrayList.class.getName();
+  private static final String CLASSNM_SIMPLE = @{Template}ArrayList.class.getSimpleName();
 
   private static final Logger logger = LoggerFactory.getLogger(CLASSNM);
 
-  public ~@{Template}ArrayList() {
+  public @{Template}ArrayList() {
     this(CLASSNM_SIMPLE);
   }
 
-  public ~@{Template}ArrayList(String listNm) {
+  public @{Template}ArrayList(String listNm) {
     super(listNm, null);
   }
 
@@ -24,7 +24,7 @@ public class ~@{Template}ArrayList extends ObjectArrayList<~@{Object}> {
     }
 
     // Check ObjectArrayList type
-    if (!(fmObjectArrayLs instanceof ~@{Template}ArrayList)) {
+    if (!(fmObjectArrayLs instanceof @{Template}ArrayList)) {
       throw new RuntimeException(logger.error(LogObj.toArray(fmObjectArrayLs),
           "Attempt to copy {} to {}({})", new Object[] {
               fmObjectArrayLs.getListName(), CLASSNM_SIMPLE, getListName() } ));
@@ -32,6 +32,6 @@ public class ~@{Template}ArrayList extends ObjectArrayList<~@{Object}> {
 
     clear();
 
-    addAll((~@{Template}ArrayList) fmObjectArrayLs);
+    addAll((@{Template}ArrayList) fmObjectArrayLs);
   }
 }

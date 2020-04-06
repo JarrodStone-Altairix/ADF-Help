@@ -2,19 +2,19 @@ import com.altairix.comm.adf.fieldtypes.HasEnumField;
 import com.altairix.comm.adf.root.log.Logger;
 import com.altairix.comm.adf.root.log.LoggerFactory;
 
-public enum ~@{Template}Tcd implements HasEnumField<~@{Template}Tcd> {
+public enum @{Template}Tcd implements HasEnumField<@{Template}Tcd> {
 
   ALL ("*", "ALL"),
   NULL ("@", "NULL");
 
-  private static final String CLASSNM = ~@{Template}Tcd.class.getName();
-  private static final String CLASSNM_SIMPLE = ~@{Template}Tcd.class.getSimpleName();
+  private static final String CLASSNM = @{Template}Tcd.class.getName();
+  private static final String CLASSNM_SIMPLE = @{Template}Tcd.class.getSimpleName();
   private static final Logger logger  = LoggerFactory.getLogger(CLASSNM);
 
   private final String desc;
   private final String value;
 
-  ~@{Template}Tcd(String value, String desc) {
+  @{Template}Tcd(String value, String desc) {
     this.value = value;
     this.desc  = desc;
   }
@@ -31,19 +31,19 @@ public enum ~@{Template}Tcd implements HasEnumField<~@{Template}Tcd> {
 
   @Override
   public boolean isInstanceOf(Object testValue) {
-    return testValue instanceof ~@{Template}Tcd;
+    return testValue instanceof @{Template}Tcd;
   }
 
   @Override
-  public boolean isSelectionValue(~@{Template}Tcd tstEnum) {
+  public boolean isSelectionValue(@{Template}Tcd tstEnum) {
     return tstEnum == ALL;
   }
 
   @Override
-  public ~@{Template}Tcd toEnum(String enumString) {
+  public @{Template}Tcd toEnum(String enumString) {
 
     if (enumString != null) {
-      for (~@{Template}Tcd enumVal: ~@{Template}Tcd.values()) {
+      for (@{Template}Tcd enumVal: @{Template}Tcd.values()) {
         if (enumVal.value.equals(enumString)) {
           return enumVal;
         }

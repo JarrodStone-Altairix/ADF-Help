@@ -7,12 +7,12 @@ template_pattern = re.compile(r"\@{(.+?)}")
 def build_template(symbol_map, text):
 
   for s, t in symbol_map.items():
-    search_tokens = srvc_sub.to_token_list(s)
-    template_tokens = srvc_sub.to_token_list(t)
+    s_tok = srvc_sub.to_token_list(s)
+    t_tok = srvc_sub.to_token_list(t)
 
     sub_map = {
-        k: f"@{{{v}}}" for k, v
-        in srvc_sub.get_subtitution_map(search_tokens, template_tokens).items()
+        sub_func(s_tok): f"@{{{sub_func(t_tok)}}}"
+        for sub_func in srvc_sub.get_sub_funcs()
     }
 
     for k, v in sub_map.items():
@@ -43,12 +43,12 @@ def get_symbols(text):
 def apply_template(symbols, template):
 
   for t, s in symbols.items():
-    template_tokens = srvc_sub.to_token_list(t)
-    symbol_tokens = srvc_sub.to_token_list(s)
+    t_tok = srvc_sub.to_token_list(t)
+    s_tok = srvc_sub.to_token_list(s)
 
     sub_map = {
-        f"@{{{k}}}": v for k, v
-        in srvc_sub.get_subtitution_map(template_tokens, symbol_tokens).items()
+        f"@{{{sub_func(t_tok)}}}": sub_func(s_tok)
+        for sub_func in srvc_sub.get_sub_funcs()
     }
 
     for k, v in sub_map.items():

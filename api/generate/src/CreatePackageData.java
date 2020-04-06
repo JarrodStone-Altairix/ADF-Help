@@ -1,10 +1,10 @@
-public class Create~@{Template}Data extends CreatePackageData {
+public class Create@{Template}Data extends CreatePackageData {
 
-  private static String NMSPC          = ~@{Template}Const.NMSPC;
-  private static String CLASSNM_SIMPLE = Create~@{Template}Data.class.getSimpleName();
+  private static String NMSPC          = @{Template}Const.NMSPC;
+  private static String CLASSNM_SIMPLE = Create@{Template}Data.class.getSimpleName();
 
   public static void main(String[] args) {
-    new Create~@{Template}Data().innerMain(args, true);
+    new Create@{Template}Data().innerMain(args, true);
   }
 
   @Override
@@ -13,9 +13,9 @@ public class Create~@{Template}Data extends CreatePackageData {
     initLoggerTracer();
 
     tracer.trace("Data creation started for " + NMSPC);
-	
+
 	// Create UIDs
-    // NextUid.createNextUid(~@{Template}Const.DTREE_UID, "0000000000",  NextUid.UidTcd.BASE34, NextUid.CacheLevelTcd.HIGH);
+    // NextUid.createNextUid(@{Template}Const.DTREE_UID, "0000000000",  NextUid.UidTcd.BASE34, NextUid.CacheLevelTcd.HIGH);
 
     // Create Registry Entries
     // createRegistryEntries();
@@ -24,7 +24,7 @@ public class Create~@{Template}Data extends CreatePackageData {
     // createMessages();
 
     // Load Install data files
-    // reload~@{Template}Data();
+    // reload@{Template}Data();
 
     tracer.trace("Data creation ended for " + NMSPC);
   }
@@ -49,35 +49,35 @@ public class Create~@{Template}Data extends CreatePackageData {
     tracer.trace("Create Registry Entries ended for " + CLASSNM_SIMPLE);
   }
 
-  private void reload~@{Template}Data() {
+  private void reload@{Template}Data() {
 
     try {
 
       // Delete all existing files
-      ~@{Template}_Server.deleteDTree(~@{Template}Const.DTREEUID_BRAINEX, ~@{Template}Const.DNODE_PATH_~@{TEMPLATE}, true);
+      @{Template}_Server.deleteDTree(@{Template}Const.DTREEUID_BRAINEX, @{Template}Const.DNODE_PATH_@{TEMPLATE}, true);
 
       // Install new files
-      Install~@{Template}Files installer = new Install~@{Template}Files();
+      Install@{Template}Files installer = new Install@{Template}Files();
 
-      BNodeBuilder templateBldr = new BNodeBuilder(Bx~@{Template}Const.DTREEUID_BRAINEX,
-          ~@{Template}Const.DNODE_PATH_~@{TEMPLATE}, ~@{Template}Name.AUTO);
+      BNodeBuilder templateBldr = new BNodeBuilder(Bx@{Template}Const.DTREEUID_BRAINEX,
+          @{Template}Const.DNODE_PATH_@{TEMPLATE}, @{Template}Name.AUTO);
 
       templateBldr
       .setCompressed(false)
-      .setDomainCode(~@{Template}Const.DOMAINCD_CONFIG)
-      .setOwner(~@{Template}_Server.DNODE_OWNERCD_BRAINEX, ~@{Template}_Server.DNODE_OWNERUID_BRAINEX)
-      .setAccess(~@{Template}AccessTcd.CONTROL, ~@{Template}AccessTcd.NONE);
+      .setDomainCode(@{Template}Const.DOMAINCD_CONFIG)
+      .setOwner(@{Template}_Server.DNODE_OWNERCD_BRAINEX, @{Template}_Server.DNODE_OWNERUID_BRAINEX)
+      .setAccess(@{Template}AccessTcd.CONTROL, @{Template}AccessTcd.NONE);
 
       int installCnt = installer.installFiles(BxFileSystem_Server.INSTALL_ROUTE_ID,
-          ~@{Template}Const.FILESYSTEM_PATH_INSTALL_~@{TEMPLATE}, "", templateBldr);
+          @{Template}Const.FILESYSTEM_PATH_INSTALL_@{TEMPLATE}, "", templateBldr);
 
       if (installCnt < 1) {
-        throw new RuntimeException(logger.error("Failed to Load ~@{Template} files"));
+        throw new RuntimeException(logger.error("Failed to Load @{Template} files"));
       }
     }
 
     catch (Exception e) {
-      throw new RuntimeException(logger.error(e, "Failed to Load ~@{Template}  files"));
+      throw new RuntimeException(logger.error(e, "Failed to Load @{Template}  files"));
     }
   }
 }

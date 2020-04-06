@@ -42,6 +42,32 @@ def _validation_err_repr(e):
       for k, v in e.messages.items()])
 
 
+class validate_params(object):
+  """
+  A decorator to parse a params request into a marshmallow schema
+  """
+
+  def __init__(self, schema):
+    self.schema = schema
+
+  def __call__(self, fn):
+    @wraps(fn)
+    def wrapper(*args, **kwargs):
+      return fn(*args, **kwargs, data=validate_params_in_request(self.schema))
+    return wrapper
+
+
+def validate_params_in_request(schema):
+  try:
+    return schema.load(request.args)
+  except ValidationError as e:
+    logger.warn(
+        f"Schema validation error({_validation_err_repr(e)})")
+    abort(400, e.messages)
+  except Exception as e:
+    logger.critical(f"Unknown error({str(e)})")
+    abort(500)
+
 # class log_exceptions(object):
 #   """
 #   Decorator class to catch all exceptions and log them

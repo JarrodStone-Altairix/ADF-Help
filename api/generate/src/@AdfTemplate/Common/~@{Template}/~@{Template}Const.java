@@ -1,8 +1,8 @@
-package com.altairix.comm.adf.~@{Template};
+package com.altairix.comm.adf.@{Template};
 
-public class ~@{Template}Const  {
+public class @{Template}Const  {
 
-  public static final String ~@{TEMPLATE}_UID = "~@{Template}Uid";
-  public static final String NMSPC = NameSpace.getAbsoluteName(AdfConst.NMSPC, "~@{Template})" ;
+  public static final String @{TEMPLATE}_UID = "@{Template}Uid";
+  public static final String NMSPC = NameSpace.getAbsoluteName(AdfConst.NMSPC, "@{Template})" ;
 
 }

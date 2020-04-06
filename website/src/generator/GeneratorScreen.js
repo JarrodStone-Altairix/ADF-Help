@@ -42,6 +42,7 @@ class GeneratorScreen extends Component {
 
     if (!this.updateOut || this.state.text.length === "") { return }
 
+    this.updateOut = false
     axios.post("template/apply", {
       text: this.state.text,
       symbols: this.state.symbols,

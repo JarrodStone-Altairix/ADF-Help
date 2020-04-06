@@ -7,6 +7,7 @@ import SubstituteScreen from './substitute/SubstituteScreen';
 import FormatterScreen from "./formatter/FormatterScreen";
 import TemplaterScreen from './templater/TemplaterScreen';
 import GeneratorScreen from './generator/GeneratorScreen';
+import BuilderScreen from './builder/BuilderScreen';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
               <Route path="/formatter" component={FormatterScreen} />
               <Route path="/templater" component={TemplaterScreen} />
               <Route path="/generator" component={GeneratorScreen} />
+              <Route path="/builder" component={BuilderScreen} />
             </Switch>
           </div>
         </div>

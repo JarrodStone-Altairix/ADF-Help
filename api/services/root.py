@@ -6,6 +6,7 @@ from services.gen.api import ListTemplate, ReadTemplate
 #     CreatePackageData, LoadCommand, Tcd, TcdField)
 from services.fmt.api import Table, Pivot
 import services.template.api as template
+import services.builder.api as builder
 
 
 def init_services():
@@ -31,4 +32,4 @@ def init_services():
   api.add_resource(template.Apply, "/template/apply")
 
   # Builder
-  # api.add_resource(Generate, "/builder/generate")
+  api.add_resource(builder.Package, "/builder/package")

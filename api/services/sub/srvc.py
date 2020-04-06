@@ -11,12 +11,12 @@ def to_token_list(text):
   """
   String is assumed to not have any spaces
   """
-  if pascal_pttrn.match(text) is not None:
+  if const_pttrn.match(text) is not None:
+    text = text.replace("_", " ").lower()
+  elif pascal_pttrn.match(text) is not None:
     text = re.sub(r"(.)([A-Z])", r"\1 \2", text).lower()
   elif camel_pttrn.match(text) is not None:
     text = re.sub(r"([a-z])([A-Z])", r"\1 \2", text).lower()
-  elif const_pttrn.match(text) is not None:
-    text = text.replace("_", " ").lower()
   elif css_pttrn.match(text) is not None:
     text = text.replace("-", " ").lower()
   else:
@@ -41,19 +41,15 @@ def to_css(tokens):
   return "-".join([t.lower() for t in tokens])
 
 
-def get_subtitution_map(find_tokens, replace_tokens):
-  return {
-      to_pascal(find_tokens): to_pascal(replace_tokens),
-      to_camel(find_tokens): to_camel(replace_tokens),
-      to_const(find_tokens): to_const(replace_tokens),
-      to_css(find_tokens): to_css(replace_tokens),
-  }
+def get_sub_funcs():
+  return [to_pascal, to_camel, to_const, to_css]
 
 
 def replace_case(find_tokens, replace_tokens, text):
-  sub_map = get_subtitution_map(find_tokens, replace_tokens)
 
-  for k, v in sub_map.items():
+  for sub_func in get_sub_funcs():
+    k = sub_func(find_tokens)
+    v = sub_func(replace_tokens)
     text = text.replace(k, v)
 
   return text

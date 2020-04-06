@@ -12,6 +12,7 @@ class HeaderMenu extends Component {
           <Link to="/formatter">Formatter</Link>
           <Link to="/templater">Templater</Link>
           <Link to="/generator">Generator</Link>
+          <Link to="/builder">Package Builder</Link>
         </div>
         <img id="header-menu-logo" src="logo.png" alt="Altairix" />
       </div>

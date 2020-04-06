@@ -5,16 +5,16 @@ import com.altairix.comm.adf.root.log.fields.Lobj;
 import com.altairix.comm.adf.root.trace.Trace;
 import com.altairix.comm.adf.root.util.ArgSet;
 
-public class Load~@{Template} extends BatchCommand implements HasRemoteCommand {
+public class Load@{Template} extends BatchCommand implements HasRemoteCommand {
 
    public static final String USAGE =
-      "Usage: Load~@{Template} version=? [VERBOSE]";
+      "Usage: Load@{Template} version=? [VERBOSE]";
 
   public static final String ARG_VERSION = "version";
   public static final String ARG_VERBOSE = "VERBOSE";
 
   public static void main(String[] args) {
-    new Load~@{Template}().innerMain(args, true);
+    new Load@{Template}().innerMain(args, true);
   }
 
   @Override
