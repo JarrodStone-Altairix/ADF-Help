@@ -89,3 +89,8 @@ input:focus, textarea:focus {
 #app-workspace {
   flex-grow: 1;
 }
+
+#home-root {
+  padding-top: 10px;
+  text-align: center;
+}

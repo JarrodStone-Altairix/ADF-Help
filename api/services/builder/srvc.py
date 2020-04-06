@@ -3,7 +3,7 @@ from io import BytesIO
 from zipfile import ZipFile, ZIP_DEFLATED
 import services.template.srvc as template
 
-SRC_DIR = "generate/src"
+SRC_DIR = "services/builder/templates"
 
 
 def build_module(package_dir, symbols):

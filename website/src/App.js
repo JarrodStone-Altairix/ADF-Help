@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import HeaderMenu from './home/HeaderMenu'
 import Home from './home/Home';
-import './App.css';
+import './app.css';
 import SubstituteScreen from './substitute/SubstituteScreen';
 import FormatterScreen from "./formatter/FormatterScreen";
 import TemplaterScreen from './templater/TemplaterScreen';
