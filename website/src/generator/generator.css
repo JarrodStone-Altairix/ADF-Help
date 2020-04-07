@@ -47,8 +47,11 @@
 
 #generator-screen-search-cntr {
   display: flex;
-  padding: 5px 0px;
   border-bottom: 1px solid var(--colour-primary);
+}
+
+#generator-screen-search-cntr>input {
+  padding: 10px 0px 10px 5px;
 }
 
 .generator-list-root {

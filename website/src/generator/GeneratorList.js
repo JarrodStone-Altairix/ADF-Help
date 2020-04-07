@@ -16,12 +16,12 @@ class GeneratorList extends Component {
     return (
       <div className="generator-list-root">
         {
-          this.props.templates.map((x, id) => {
+          this.props.templates.map((name, id) => {
             return (
               <div className="generator-list-item" key={id}
                 onClick={e => this.props.onItemClick(e, id)}
-                style={{ display: x.toLowerCase().includes(this.props.search.toLowerCase()) ? "" : "none" }}>
-                {x}
+                style={{ display: name.toLowerCase().includes(this.props.search.toLowerCase()) ? null : "none" }}>
+                {name}
               </div>
             )
           })
