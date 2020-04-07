@@ -45,6 +45,12 @@
   padding-left: 5px;
 }
 
+#generator-screen-search-cntr {
+  display: flex;
+  padding: 5px 0px;
+  border-bottom: 1px solid var(--colour-primary);
+}
+
 .generator-list-root {
   display: flex;
   flex-direction: column;

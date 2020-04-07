@@ -12,6 +12,7 @@ class GeneratorScreen extends Component {
     this.state = {
       templates: [],
       symbols: { symbol: "" },
+      search: '',
       text: '',
       out: ''
     }
@@ -19,6 +20,7 @@ class GeneratorScreen extends Component {
 
     this.handleGeneratorListClick = this.handleGeneratorListClick.bind(this)
     this.handleSymbolChange = this.handleSymbolChange.bind(this)
+    this.handleSearchChange = this.handleSearchChange.bind(this)
   }
 
   handleGeneratorListClick(e, id) {
@@ -37,6 +39,8 @@ class GeneratorScreen extends Component {
     symbols[symbol] = e.target.value
     this.setState({ symbols })
   }
+
+  handleSearchChange(e) { this.setState({ search: e.target.value }) }
 
   componentDidUpdate(prevProps, prevState) {
 
@@ -63,7 +67,12 @@ class GeneratorScreen extends Component {
         <div id="generator-screen-sidebar">
           <GeneratorControls symbols={Object.keys(this.state.symbols)}
             onSymbolChange={this.handleSymbolChange} />
-          <GeneratorList templates={this.state.templates} onItemClick={this.handleGeneratorListClick} />
+          <div id="generator-screen-search-cntr" >
+            <img src="icons/search-black-24dp.svg" />
+            <input type="text" placeholder="Search" onChange={this.handleSearchChange} />
+          </div>
+          <GeneratorList templates={this.state.templates}
+            onItemClick={this.handleGeneratorListClick} search={this.state.search} />
         </div>
         <div className="generator-screen-divider"></div>
         <div id="generator-screen-input-text" className="generator-screen-textarea">
