@@ -35,7 +35,7 @@ class BuilderItem extends Component {
         <input className="builder-item-name" type="text" placeholder={this.props.placeholder} onChange={this.handleItemChange} />
         <input className="builder-item-button" type="button" value="Build" onClick={this.handleItemClick} />
 
-        <a id="builder-screen-download-link" ref={this.downloadLink} style={{ display: "none" }} />
+        <a id="builder-screen-download-link" ref={this.downloadLink} style={{ display: "none" }} href="/">empty</a>
       </div>
     );
   }

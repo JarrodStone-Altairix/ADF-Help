@@ -1,0 +1,40 @@
+package com.arrowsmith.survey.gwt.ui;
+
+import com.altairix.gwt.adf.ui.adfStyles.AdfStyleSet;
+import com.altairix.gwt.adf.ui.adfWidgets.AdfWidget;
+
+public class @{Template} extends AdfWidget<@{Template}> {
+
+  public static class @{Template}StyleSet extends AdfStyleSet<@{Template}StyleSet> {
+
+    public @{Template}StyleSet() {
+      this(WIDGET_TAG);
+    }
+
+    protected @{Template}StyleSet(String styleSetNm) {
+      super(styleSetNm);
+
+      putStyles(STYLE_KEY_WIDGET, WIDGET_TAG, STYLE_NMSPC + "-Widget");
+    }
+  }
+
+
+  /** Widget Styles namespace */
+  public static final String STYLE_NMSPC = "px-@{Template}";
+
+  public static final String STYLE_KEY_WIDGET = "@{template}";
+
+
+
+  private static final @{Template}StyleSet DFT_STYLES = new @{Template}StyleSet();
+  public static final String WIDGET_NMSPC = "ix.@{Template}";
+  public static final String WIDGET_TAG   = STYLE_NMSPC + "-Tag";
+
+
+  public @{Template}(String widgetNm, boolean debug) {
+
+    super("div", WIDGET_TAG, WIDGET_NMSPC, widgetNm, debug);
+    setStyles(DFT_STYLES);
+    addStyles(getStyles(STYLE_KEY_WIDGET));
+  }
+}

@@ -27,4 +27,4 @@ class Pivot(Resource):
   def post(self, data):
 
     return {
-        "text": fmt.format_table(data["text"], data["pivot"])}
+        "text": fmt.format_pivot(data["text"], data["pivot"])}

@@ -4,10 +4,6 @@ import './builder.css';
 
 class BuilderScreen extends Component {
 
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     return (
       <div id="builder-screen-root">

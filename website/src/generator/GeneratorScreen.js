@@ -68,7 +68,7 @@ class GeneratorScreen extends Component {
           <GeneratorControls symbols={Object.keys(this.state.symbols)}
             onSymbolChange={this.handleSymbolChange} />
           <div id="generator-screen-search-cntr" >
-            <img src="icons/search-black-24dp.svg" />
+            <img src="icons/search-black-24dp.svg" alt="search" />
             <input type="text" placeholder="Search" onChange={this.handleSearchChange} />
           </div>
           <GeneratorList templates={this.state.templates}
