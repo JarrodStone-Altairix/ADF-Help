@@ -17,5 +17,6 @@ After, run setup.bat or setup.sh in the api directory. This will create a virtua
 
 To run the API server, ensure you are using the virtual environment and run the following command in the api directory:
 
-```flask run```
+Windows: ```.venv/Scripts/python app.py```
+Linux/Unix ```.venv/bin/python app.py```
 
