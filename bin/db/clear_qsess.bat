@@ -1,1 +1,0 @@
-python C:\Python\bin\db\ixdb.py truncate ixaqsess ixaqacty
