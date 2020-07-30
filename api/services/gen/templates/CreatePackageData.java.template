@@ -57,7 +57,7 @@ public class Create@{Template}Data extends CreatePackageData {
       @{Template}_Server.deleteDTree(@{Template}Const.DTREEUID_BRAINEX, @{Template}Const.DNODE_PATH_@{TEMPLATE}, true);
 
       // Install new files
-      Install@{Template}Files installer = new Install@{Template}Files();
+      InstallDNodeResources installer = new InstallDNodeResources();
 
       BNodeBuilder templateBldr = new BNodeBuilder(Bx@{Template}Const.DTREEUID_BRAINEX,
           @{Template}Const.DNODE_PATH_@{TEMPLATE}, @{Template}Name.AUTO);

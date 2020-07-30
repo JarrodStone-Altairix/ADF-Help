@@ -57,16 +57,19 @@ def format_table(text, delim=','):
       for row in list(map(list, zip(*fmt_table)))])
 
 
-def format_pivot(text, pivot):
+def format_pivot(text: str, pivot: str):
 
   # Split into prefixes, pivot/delim and suffixes
-  prefixes, delims, suffixes = list(map(list, zip(
-      # regex split on the pivot
-      *[re.split(f"({pivot})", line, 1)
-        # get each line
-        for line in text.split("\n")])))
-  # Clear any whitespace in the prefixes
-  prefixes = [p.rstrip() for p in prefixes]
+  prefixes = []
+  delims = []
+  suffixes = []
+
+  # regex split on the pivot
+  lines = [re.split(f"({pivot})", line, 1) for line in text.split("\n")]
+  for line in lines:
+    prefixes.append(line[0].rstrip())
+    delims.append(line[1] if len(line) > 1 else "")
+    suffixes.append(line[2] if len(line) > 2 else "")
 
   max_len = len(max(prefixes, key=len))
   return "\n".join([

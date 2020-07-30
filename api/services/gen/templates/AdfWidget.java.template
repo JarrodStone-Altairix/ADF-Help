@@ -1,5 +1,3 @@
-package com.arrowsmith.survey.gwt.ui;
-
 import com.altairix.gwt.adf.ui.adfStyles.AdfStyleSet;
 import com.altairix.gwt.adf.ui.adfWidgets.AdfWidget;
 
@@ -20,14 +18,14 @@ public class @{Template} extends AdfWidget<@{Template}> {
 
 
   /** Widget Styles namespace */
-  public static final String STYLE_NMSPC = "px-@{Template}";
+  public static final String STYLE_NMSPC = "@{prefix}-@{Template}";
 
   public static final String STYLE_KEY_WIDGET = "@{template}";
 
 
 
   private static final @{Template}StyleSet DFT_STYLES = new @{Template}StyleSet();
-  public static final String WIDGET_NMSPC = "ix.@{Template}";
+  public static final String WIDGET_NMSPC = "@{prefix}.@{Template}";
   public static final String WIDGET_TAG   = STYLE_NMSPC + "-Tag";
 
 
